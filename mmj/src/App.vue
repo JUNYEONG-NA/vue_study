@@ -1,32 +1,31 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div id="app" class="container">
+    <h1 class="text-center"> Todo app</h1>
+    <input v-model="todoText"
+    type="text"
+    class="w-100 p-2"
+    placeholder="Type todo"
+    @keyup.enter="addTodo">
+    <hr>
+    <Todo
+      v-for="todo in todos"
+      :key="todo.id"
+      :todo="todo"
+      @toggle-checkbox="toggleCheckbox"
+      @click-delete="deleteTodo"/>
+
+    
   </div>
+
 </template>
+<script>
+import Todo from "@/components/ToDo.vue"
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  components:{
+    Todo
   }
+
+  
 }
-</style>
+</script>
