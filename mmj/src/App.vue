@@ -1,18 +1,18 @@
 <template>
   <div id="app" class="container">
-    <h1 class="text-center"> Todo app</h1>
+    <h1 class="text-center"> zi._.u </h1>
     <input 
       v-model="todoText"
       type="text"
       class="w-100 p-2"
-      placeholder="Type todo"
+      placeholder="INSERT TEXT"
       @keyup.enter="addTodo">
     <hr>
     <Todo
       v-for="todo in todos"
       :key="todo.id"
       :todo="todo"
-      @toggle-Checkbox="toggleCheckbox"
+      @toggle-Checkbox="toggleCheckbox()"
       />
 
     
@@ -20,7 +20,7 @@
 
 </template>
 <script>
-import Todo from "@/components/ToDo.vue"
+import Todo from "@/components/ToDo"
 
 export default {
   components:{
@@ -39,7 +39,7 @@ export default {
   methods:{
     addTodo(e){
       this.todos.push({
-        id : this.id++,
+        id : Math.random(),
         text : e.target.value,
         checked : false,
         })
