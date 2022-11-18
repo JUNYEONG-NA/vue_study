@@ -11,6 +11,12 @@
     >{{ todo.text }}</span>
         <v-btn outlined small icon class="btn-default" @click="deleteItem">X</v-btn>
       </div>
+    
+    
+  
+  
+  
+  
   
   </div>
 
