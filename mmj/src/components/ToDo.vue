@@ -1,15 +1,27 @@
 <template>
   <div>
-      <div>
-      {{todo.checked}}
+      <div class="mb-3 flex-grow-1">
+          
   <input type="checkbox" :checked="todo.checked"
   @change="toggleCheckbox" >
-    <span class="mt-3">{{ todo.text }}</span>
+
+    <span class="ml-5" 
+    :class="todo.checked ? 'text-muted' :''"
+    :style="todo.checked ? 'text-decoration : line-through':''"
+    >{{ todo.text }}</span>
+        <v-btn outlined small icon class="btn-default" @click="deleteItem">X</v-btn>
       </div>
-    <div> 
-        <button @click="setStatus"> {{name}}는{{status}}</button>
-    </div>
+    
+    
+  
+  
+  
+  
+  
   </div>
+
+
+
 </template>
 
 <script>
@@ -20,25 +32,17 @@ export default {
             required : true
         }
     },
-    data(){
-        return{
-            name : "지우",
-            status : "귀여움"
-        }
-    },
     methods :{
         toggleCheckbox(e){
-            console.log(e.target.checked)
-            console.log(this.todo.id)
-            
             this.$emit('toggle-Checkbox',{
                 id : this.todo.id,
                 checked : e.target.checked
             })
         },
-        setStatus(){
-            this.status = "바보"
+        deleteItem(){
+            this.$emit("delete-item", this.todo.id)
         }
+      
     }
 }
 </script>

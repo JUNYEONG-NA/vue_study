@@ -12,7 +12,8 @@
       v-for="todo in todos"
       :key="todo.id"
       :todo="todo"
-      @toggle-Checkbox="toggleCheckbox()"
+      @toggle-Checkbox="toggleCheckbox"
+      @delete-item="deleteItem"
       />
 
     
@@ -45,8 +46,20 @@ export default {
         })
         this.todoText=''
     },
-    togglecheckbox({id, checked}){
-        console.log(id, checked)
+    toggleCheckbox({id, checked}){
+      const index = this.todos.findIndex(todo =>{
+        return todo.id ===id;
+      });
+      this.todos[index].checked = checked;
+    },
+    deleteItem(id){
+    //   const index = this.todos.findIndex(todo =>{
+    //     return todo.id === id;
+    //   })
+    // this.toods.splice(index, 1);
+
+    this.todos = this.todos.filter(todo=> todo.id !== id);
+
     }
   }
 }
