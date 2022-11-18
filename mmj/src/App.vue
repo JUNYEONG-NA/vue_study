@@ -1,31 +1,25 @@
 <template>
   <div id="app" class="container">
     <h1 class="text-center"> zi._.u </h1>
-    <input 
-      v-model="todoText"
-      type="text"
-      class="w-100 p-2"
-      placeholder="INSERT TEXT"
-      @keyup.enter="addTodo">
-    <hr>
-    <Todo
-      v-for="todo in todos"
-      :key="todo.id"
-      :todo="todo"
-      @toggle-Checkbox="toggleCheckbox"
-      @delete-item="deleteItem"
-      />
-
     
+    <AddTodoItem @add-Todo="addTodo"/>
+    <hr>
+ 
+  <TodoList :todos="todos"
+        @toggle-Checkbox="toggleCheckbox"
+        @delete-item="deleteItem"
+  />
+
   </div>
 
 </template>
 <script>
-import Todo from "@/components/ToDo"
-
+import TodoList from '@/components/TodoList'
+import AddTodoItem from '@/components/AddTodoItem'
 export default {
   components:{
-    Todo
+    TodoList,
+    AddTodoItem
   },
   data(){
     return{
